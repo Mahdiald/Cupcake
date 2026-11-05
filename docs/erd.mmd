@@ -1,0 +1,10 @@
+erDiagram
+ USERS ||--o{ ORDERS : places
+ ORDERS ||--|{ ORDER_LINES : includes
+ BOTTOMS ||--o{ ORDER_LINES : selected
+ TOPPINGS ||--o{ ORDER_LINES : selected
+ USERS { bigint id PK string email UK string password_hash string role decimal balance }
+ ORDERS { bigint id PK bigint user_id FK timestamp created_at decimal total }
+ ORDER_LINES { bigint id PK bigint order_id FK bigint bottom_id FK bigint topping_id FK int quantity decimal unit_price }
+ BOTTOMS { bigint id PK string name UK decimal price }
+ TOPPINGS { bigint id PK string name UK decimal price }

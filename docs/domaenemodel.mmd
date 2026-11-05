@@ -1,0 +1,10 @@
+classDiagram
+    class Kunde { email }
+    class Ordre { bestillingsdato total }
+    class Ordrelinje { antal stykpris }
+    class Bund { navn pris }
+    class Topping { navn pris }
+    Kunde "1" --> "0..*" Ordre : afgiver
+    Ordre "1" *-- "1..*" Ordrelinje : indeholder
+    Ordrelinje "0..*" --> "1" Bund : vælger
+    Ordrelinje "0..*" --> "1" Topping : vælger

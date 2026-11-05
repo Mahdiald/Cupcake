@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Min konto – Copenhagen Cupcakes</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><a class="logo" href="/">🧁 Copenhagen Cupcakes</a><nav><a href="/">Til shoppen</a><a href="/cart">Kurv (<span th:text="${cartSize}">0</span>)</a><a href="/account" aria-current="page">Min konto</a><form method="post" action="/logout"><button>Log ud</button></form></nav></header>
+<main>
+<section class="panel account-overview">
+ <p class="eyebrow">Din profil</p><h1>Min konto</h1>
+ <p>Logget ind som <strong th:text="${email}">kunde@example.dk</strong></p>
+ <div class="balance-card"><span>Din aktuelle saldo</span><strong th:text="${balance + ' kr.'}">0.00 kr.</strong><small>Saldoen opdateres automatisk efter en bestilling. Indbetalinger foretages af administrator i databasen.</small></div>
+</section>
+<section class="panel"><h2>Mine tidligere bestillinger</h2>
+ <p th:if="${#lists.isEmpty(orders)}">Du har ikke gennemført nogen bestillinger endnu. <a href="/">Design din første cupcake</a>.</p>
+ <div th:if="${!#lists.isEmpty(orders)}" class="table-wrap"><table><thead><tr><th>Ordrenummer</th><th>Dato</th><th>Beløb</th></tr></thead><tbody>
+ <tr th:each="o : ${orders}"><td th:text="${'#' + o.id}">#1</td><td th:text="${o.created}">2026-11-05</td><td th:text="${o.total + ' kr.'}">10.00 kr.</td></tr>
+ </tbody></table></div>
+</section>
+</main><footer>Studieprojekt · Copenhagen Cupcakes</footer>
+</body></html>
